@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Story Manager</title>
+</head>
+<body>
+
+    <caption><h2>User stroy table</h2></caption>
+    <a href="{{ url_for('create_story') }}">Add new Story</a>
+    <table border="1">
+    <thead>
+        <th>Story Title</th>
+        <th>User Story</th>
+        <th>Acceptance Criteria</th>
+        <th>Business Value</th>
+        <th>Estimation</th>
+        <th>Status</th>
+        <th>Del</th>
+        <th>Pen</th>
+    </thead>
+
+    <tbody>
+    {% for i in story %}
+        <tr>
+            <td>{{i.story_title}}</td><td>{{i.user_story}}</td><td>{{i.acceptance_criteria}}</td>
+            <td>{{i.business_value}}</td><td>{{i.estimation}}</td><td>{{i.status}}</td>
+            <td> <a href="{{ url_for('dell', story_id=i.id) }}"> <img src="{{ url_for('static',
+            filename='bin.jpg') }}" height="50" width="50" ></a>
+            <td> <a href="{{ url_for('update_story', story_id=i.id) }}"> <img src="{{ url_for('static',
+            filename='pen.png') }}" height="30" width="30" ></a>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+    </table>
+</body>
+</html>

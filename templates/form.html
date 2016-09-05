@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Story Manager - Add new Story</title>
+</head>
+<body>
+
+<form method="post", action="{{ action }}" >
+    <h1>User Story Manager - Add new Story</h1>
+
+    <p>Story Title</p>
+    <p><input value="{{ story.story_title}}" id="story_title" name="story_title" type="text" size="85" required></p>
+
+    <p>User Story</p>
+    <p><textarea id="user_story" name="user_story" rows="5" cols="85" required>{{ story.user_story }}</textarea></p>
+
+    <p>Acceptance Criteria</p>
+    <p><textarea id="acceptance_criteria" name="acceptance_criteria" rows="5"
+                 cols="85" required>{{ story.acceptance_criteria }}</textarea></p>
+
+    <p>Business Value</p>
+    <input value="{{ story.business_value or 100}}" id="business_value" name="business_value" type="number"
+     min="100" max="1500" step="100">
+
+   <p>Estimation (h)</p>
+   <input value="{{ story.estimation or 0.5}}" id="estimation" name="estimation" type="number"
+    min="0.5" max="40" step="0.5">
+
+    <p>Status</p>
+    <select id="status" name="status">
+      <option {{ 'selected' if story.status=='planning' else ''  }} value="planning">Planning</option>
+      <option {{ 'selected' if story.status=='to_do' else ''  }} value="to_do">To Do</option>
+      <option {{ 'selected' if story.status=='in_progress' else ''  }} value="in_progress">In Progress</option>
+      <option {{ 'selected' if story.status=='review' else ''  }} value="review">Review</option>
+      <option {{ 'selected' if story.status=='done' else ''  }} value="done">Done</option>
+    </select>
+    {{ button }}
+    <p><input type="submit" value="Save" /></p>
+</form>
+
+</body>
+</html>
